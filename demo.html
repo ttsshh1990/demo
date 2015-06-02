@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>demo</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="main.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+	<script src="js/echarts.js"></script>
+	<script src="js/autoTitrationProtocol.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="options-panel">
+			<div class="arguments-area col-md-4">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="bolusLockoutTime" class="col-sm-9 control-label">Bolus Lockout Time</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="bolusLockoutTime" >
+
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="bolusBlockSetupTime" class="col-sm-9 control-label">Bolus Lockout Time</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="bolusBlockSetupTime" >
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="basalRate" class="col-sm-9 control-label">Basal Rate</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="basalRate" >
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="autoTitrationDelta" class="col-sm-9 control-label">Auto Titration Delta</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="autoTitrationDelta"  >
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="autoTitrationUpLockoutTime" class="col-sm-9 control-label">Auto Titration Up Lockout Time</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="autoTitrationUpLockoutTime"  >
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="autoTitrationDownTime" class="col-sm-9 control-label">Auto Titration Down Time</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="autoTitrationDownTime"  >
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="maxBasalRate" class="col-sm-9 control-label">Max Basal Rate</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="maxBasalRate"  >
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="minBasalRate" class="col-sm-9 control-label">Min Basal Rate</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="minBasalRate"  >
+						</div>
+					</div>
+				</form></div>
+			</div>
+			<div class="operations-area col-md-8">
+				<div type="button" class="btn btn-primary start-button">Start</div>
+				<div type="button" class="btn btn-danger">Stop</div>
+				<div type="button" class="btn btn-info">Clear</div>
+				<div type="button" class="btn btn-success">Bolus</div>
+			</div>
+			<div class="display-panel col-md-12">
+				    <div id="main" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
+    				<div id="mainMap" style="height:500px;border:1px solid #ccc;padding:10px;"></div>
+			</div>
+		</div>
+
+	</body>
+	</html>
