@@ -81,6 +81,51 @@ $("document").ready(function () {
 		sec++;
 		setTimeout(timer,1000);
 	};
+	
+	function autoTitration(context){		
+		var BOLUS_VOLUME = 5; // 5 ml
+		var BOLUS_TIME = 300; // 5 min
+		
+		var bolusRate = BOLUS_VOLUME/BOLUS_TIME*3600;
+		
+		//init context;
+		if(context.sec == 0){
+			context.lastTitrationUpTime = -context.autoTitrationUpLockoutTime;
+			context.bolusLockStartTime = -context.bolusLockoutTime;
+			context.lastTitrationTime = 0;
+		}
+		
+		var rate = context.basalRate;
+		
+		if(context.sec - context.bolusLockStartTime < BOLUS_TIME){
+			rate = rate + bolusRate;
+		}else if(context.bolus){
+			if(context.sec - context.bolusLockStartTime > context.bolusLockoutTime){
+				rate = rate + bolusRate;
+				context.bolusLockStartTime = context.sec;
+				context.lastTitrationTime = context.sec;
+			}else if( (context.sec - context.bolusLockStartTime > context.bolusBlockSetupTime) && (context.sec - context.lastTitrationUpTime > context.autoTitrationUpLockoutTime)){
+				//titrate up
+				rate = rate + context.autoTitrationDelta;
+				if(rate > context.maxBasalRate) rate = context.maxBasalRate;
+				context.basalRate = rate;
+				context.lastTitrationTime = context.sec;
+				context.lastTitrationUpTime = context.sec;
+			}
+		}else{
+			if(context.sec - context.lastTitrationTime > context.autoTitrationDownTime){
+				//titrate down
+				rate = rate - context.autoTitrationDelta;
+				if(rate < context.minBasalRate) rate = context.minBasalRate;
+				context.basalRate = rate;
+				context.lastTitrationTime = context.sec;
+			}
+		}
+				
+		context.bolus = false;
+		
+		return rate;
+	}
 
 	$(".start-button").click(function(){
 		sec = 0;
